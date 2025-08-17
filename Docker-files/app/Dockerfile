@@ -1,6 +1,8 @@
 FROM openjdk:11 AS BUILD_IMAGE
 RUN apt update && apt install maven -y
 RUN git clone https://github.com/ErereAsini/vprofile-project.git
+#ADD ../.. /vprofile-project
+# The above line assumes that the Dockerfile is located two directories deep from the root of the vprofile-project repository.
 RUN cd vprofile-project && git checkout docker && mvn install 
 
 FROM tomcat:9-jre11
